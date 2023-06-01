@@ -52,7 +52,7 @@ def stark_imprimir_nombres_heroes(lista_heroes:list):
     por consola utilizando las funciones de los puntos anteriores.
 
     Args:
-        lista_heroes (list): copia de la lista de heroes
+        lista_heroes (list): lista de heroes
 
     Returns:
         _type_: returna -1 si la lista esta vacia
@@ -69,12 +69,11 @@ def obtener_nombre_y_dato(dicc:dict,key:str)->str:
     la cual representa el dato a obtener
 
     Args:
-        dicc (dict): diccionario
-        key (str): dato a obtener
+        dicc (dict): pisicion en la lista
+        key (str): altura | fuerza | peso |  
     Return : retorna el string concatenado
     """
     dato = (f"Nombre : {dicc['nombre']:19s} | {key} : {dicc[key]}")
-    print(dato)
     return dato
 #3
 def stark_imprimir_nombres_alturas(lista_heroes:list)->None:
@@ -82,7 +81,7 @@ def stark_imprimir_nombres_alturas(lista_heroes:list)->None:
     nombres y algutas usando.Utiliza la funcion del punto 2 para imprimir los nombres
 
     Args:
-        lista_heroes (list): lista heroes copia
+        lista_heroes (list): lista de heroes 
 
     Returns:
         _type_: retorna -1 si la lista esta vacia
@@ -99,7 +98,7 @@ def calcular_max(lista_heroes:list , key:str)->None:
 
     Args:
         lista_heroes (list): lista heroes
-        key (str): dato a evaluar 
+        key (str): altura | fuerza | peso |  
     """
     comparador=lista_heroes[0]
     for item in lista_heroes:
@@ -113,7 +112,7 @@ def calcular_min(lista_heroes:list , key:str)->str:
 
     Args:
         lista_heroes (list): lista heroes
-        key (str): dato a evaluar 
+        key (str):altura | fuerza | peso |  
     """
     comparador=lista_heroes[0]
     for item in lista_heroes:
@@ -128,7 +127,7 @@ def calcular_max_min_dato(lista_heroes:list , estado:str , key:str)->str:
     Args:
         lista_heroes (list): lista heroes
         estado (str):  maximo | minimo
-        key (str): key 
+        key (str): altura | fuerza | peso |  
 
     Returns:
         str: retorna el string concatenado 
@@ -138,7 +137,18 @@ def calcular_max_min_dato(lista_heroes:list , estado:str , key:str)->str:
     elif estado =="maximo":
         dato=calcular_max(lista_heroes,key)
     return dato
-def stark_calcular_imprimir_heroe(lista_heroes:list , estado:str , key :str):
+def stark_calcular_imprimir_heroe(lista_heroes:list , estado:str , key :str)->None:
+    """Funcion que recibe 3 parametros ,la lista de heroes , estado que sera maximo o minimo 
+    y la key para saber que se calculara.
+
+    Args:
+        lista_heroes (list): lista de heroes
+        estado (str): maximo | minimo
+        key (str): altura | fuerza | peso | 
+
+    Returns:
+        _type_: retorna -1 si no encuentra nada o imprime un mensaje
+    """
     if (len(lista_heroes)>0):
         dato=calcular_max_min_dato(lista_heroes,estado,key)
         nombre=obtener_nombre_y_dato(dato,key)
@@ -147,6 +157,16 @@ def stark_calcular_imprimir_heroe(lista_heroes:list , estado:str , key :str):
         return -1
 #5 5,1,5.2,5.3,5.4
 def sumar_dato_heroe(lista_heroes:list,key:str)->str:
+    """Funcion que recibe como parametro la lista de heroes y un string que
+    reprenta dato/key de los heroes que se requiere sumar.
+
+    Args:
+        lista_heroes (list): lista de heroes
+        key (str): altura | fuerza | peso |  
+
+    Returns:
+        str: retorna la suma o un mensaje que el diccionario esta vacio
+    """
     sumatoria=0
     for item in lista_heroes:
         if(len(item) > 0):
@@ -155,12 +175,30 @@ def sumar_dato_heroe(lista_heroes:list,key:str)->str:
             print("diccionario vacio")
     return sumatoria      
 def dividir(dividendo:int , divisor:int)->float:
-    if divisor != 0:
+    """funcion que recibe divivendo y divisor 
+
+    Args:
+        dividendo (int): dividendo
+        divisor (int): divisor
+
+    Returns:
+        float: resutado de la division
+    """
+    if (divisor != 0):
         resultado=dividendo / divisor  
         return resultado
     else:
         return 0
-def calcular_promedio(lista_heroes:list , key:str):
+def calcular_promedio(lista_heroes:list , key:str)->None:
+    """Funcion que recibe por parametro la lista de heroes y una key para los calculos
+
+    Args:
+        lista_heroes (list): lista_Heroes
+        key (str): altura | fuerza | peso | 
+
+    Returns:
+        _type_: retorna -1 o imprime un mensaje
+    """
     promedio=sumar_dato_heroe(lista_heroes , key)
     total=dividir(promedio,len(lista_heroes))
     return total
@@ -198,6 +236,7 @@ def stark_marvel_app():
     6.1-Imprimir menu
     6.2-Validar entero
     7-Stark marvel app 
+    8-salir
     """)
     opcion = input("    Ingresar opcion >: ")
     return opcion 
